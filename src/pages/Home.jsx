@@ -1,3 +1,4 @@
+import "../style/Home.css"
 import { FiSearch } from "react-icons/fi";
 import googleplay from "../assets/googleplay.png"
 import appstore from "../assets/appstore.png"
@@ -18,9 +19,9 @@ const Home = () => {
         <section className="main_hero">
             <div className="container-fluid">
                 <div className="hero py-4">
-                  <div className="hero_search text-white rounded mx-auto py-3 fs-5 me-lg-5 px-5 fw-bold position-relative">
-                    <FiSearch className="text-white fs-5 position-absolute hero_search_icon"/> <input type="text" placeholder="Search Members" />
-                  </div>
+                  <a href={"/member"} className="hero_search text-black bg-white rounded mx-auto py-3 fs-5 me-lg-5 px-5 fw-bold position-relative">
+                     <FiSearch className="text-black fs-5 position-absolute hero_search_icon"/>Search Members
+                  </a>
                   <div className="inner_hero text-center text-white">
                     <h1>TexTile Mandee</h1>
                     <h2>India’s <span>#1</span> <br/> <span>Textile</span> Business app</h2>
