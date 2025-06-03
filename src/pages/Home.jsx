@@ -31,12 +31,14 @@ const Home = () => {
                       <img src={appstore} alt="apple store" />
                     </div>
                   </div>
-                  <button className="hero_down text-white border-0 d-flex align-items-center mx-auto mb-3 fw-medium fs-5">Scroll Down <RiArrowDownDoubleFill /></button>
+                  <a href="#main_category" className="text-decoration-none">
+                    <button className="hero_down text-white border-0 d-flex align-items-center mx-auto mb-3 fw-medium fs-5">Scroll Down <RiArrowDownDoubleFill /></button>
+                  </a>
                 </div>
             </div>
         </section>
 
-        <section className="main_category">
+        <section className="main_category" id="main_category">
             <div className="container-fluid">
               <div className="category">
                 <div className="text-center">
@@ -125,10 +127,10 @@ const Home = () => {
                       <img src={appstore} alt="apple store" />
                 </div>
                 <div className="mt-lg-3 mt-4 gap-3 d-flex justify-content-lg-end">
-                  <FaInstagram className="fs-3"/>
-                  <FaFacebookSquare className="fs-3"/>
-                  <FaXTwitter className="fs-3"/>
-                  <FaLinkedin className="fs-3"/>
+                  <FaInstagram className="fs-3 footer_icon"/>
+                  <FaFacebookSquare className="fs-3 footer_icon"/>
+                  <FaXTwitter className="fs-3 footer_icon"/>
+                  <FaLinkedin className="fs-3 footer_icon"/>
                 </div>
               </div>
             </div>

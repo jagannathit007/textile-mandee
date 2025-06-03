@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import "../style/Members.css";
 import { FaAnglesLeft } from 'react-icons/fa6';
@@ -10,49 +10,79 @@ const Members = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [isFetching, setIsFetching] = useState(false);
 
-  const fetchMembers = async (search = '', currentPage = 1) => {
-  try {
-    setLoading(true);
-    const response = await axios.post('https://xxgn1wm1-5000.inc1.devtunnels.ms/api/users/advancedSearchUsers', {
-      search: search,
-      page: currentPage,
-      limit: 10
-    });
+  const fetchMembers = async (search = '', currentPage = 1, append = false) => {
+    try {
+      setLoading(true);
+      setIsFetching(true);
+      const response = await axios.post('https://xxgn1wm1-5000.inc1.devtunnels.ms/api/users/advancedSearchUsers', {
+        search: search,
+        page: currentPage,
+        limit: 10
+      });
 
-    const users = response.data?.data?.users || [];
-    const total = response.data?.data?.totalPages || 1;
-    
-    const formattedUsers = users.map(user => ({
-      id: user._id,
-      name: user.name || "No Name",
-      profession: user.userType?.name || "No Profession",
-      image: user.userImage
-        ? `https://xxgn1wm1-5000.inc1.devtunnels.ms/${user.userImage}`
-        : "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg"
-    }));
+      const users = response.data?.data?.users || [];
+      const total = response.data?.data?.totalPages || 1;
 
-    setMembersData(formattedUsers);
-    setTotalPages(total);
-  } catch (error) {
-    console.error("Error fetching members:", error);
-  } finally {
-    setLoading(false);
-  }
-};
+      const formattedUsers = users.map(user => ({
+        id: user._id,
+        name: user.name || "No Name",
+        profession: user.userType?.name || "No Profession",
+        image: user.userImage
+          ? `https://xxgn1wm1-5000.inc1.devtunnels.ms/${user.userImage}`
+          : "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg"
+      }));
 
+      setMembersData(prev => append ? [...prev, ...formattedUsers] : formattedUsers);
+      setTotalPages(total);
+    } catch (error) {
+      console.error("Error fetching members:", error);
+    } finally {
+      setLoading(false);
+      setIsFetching(false);
+    }
+  };
 
-useEffect(() => {
-  const delayDebounce = setTimeout(() => {
-    fetchMembers(searchTerm, page);
-  }, []);
+  const debounce = (func, wait) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), wait);
+    };
+  };
 
-  return () => clearTimeout(delayDebounce);
-}, [searchTerm, page]);
+  const handleScroll = useCallback(
+    debounce(() => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 100 &&
+        !isFetching &&
+        page < totalPages
+      ) {
+        setPage(prev => prev + 1);
+      }
+    }, 300),
+    [isFetching, page, totalPages]
+  );
 
-useEffect(() => {
-  setPage(1);
-}, [searchTerm]);
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      fetchMembers(searchTerm, page, page > 1);
+    }, 500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchTerm, page]);
+
+  useEffect(() => {
+    setPage(1);
+    setMembersData([]);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   return (
     <section className="members-section">
@@ -79,7 +109,7 @@ useEffect(() => {
         <div className="members-grid mt-5">
           <div className="row g-4">
             {membersData.map((member) => (
-              <div key={member.id} className=" col-lg-3 col-md-4 col-sm-6">
+              <div key={member.id} className="col-lg-3 col-md-4 col-sm-6">
                 <div className="member-card">
                   <div className="member-image-container">
                     <img
@@ -110,27 +140,6 @@ useEffect(() => {
             <h3>Loading...</h3>
           </div>
         )}
-
-        {!loading && membersData.length > 0 && (
-          <div className="pagination-buttons d-flex justify-content-center gap-3 mt-4">
-            <button
-              className="btn btn-secondary"
-              onClick={() => setPage(prev => Math.max(prev - 1, 1))}
-              disabled={page === 1}
-            >
-              Previous
-            </button>
-            <span className="align-self-center">Page {page} of {totalPages}</span>
-            <button
-              className="btn btn-primary"
-              onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
-              disabled={page === totalPages}
-            >
-              Next
-            </button>
-          </div>
-        )}
-
       </div>
     </section>
   );

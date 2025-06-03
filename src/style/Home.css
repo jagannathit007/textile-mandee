@@ -1,4 +1,3 @@
-
 .main_hero {
   background-image: url("../assets/hero.png");
   background-size: cover;
@@ -8,23 +7,18 @@
 }
 .hero_search {
   text-decoration: none;
-  /* backdrop-filter: blur(1px); */
-  width: 271px;
+  width: 274px;
   display: flex;
+  border: 1px solid white;
 }
-/* .hero_search input {
-  font-weight: 400;
-  background-color: transparent;
-  border: none;
-  color: white;
-  width: 100%;
+.hero_search:hover{
+  background-color: transparent !important;
+  color: white !important;
+  border: 1px solid white;
 }
-.hero_search input:focus {
-  outline: none;
+.hero_search:hover .hero_search_icon {
+  color: white !important;
 }
-.hero_search input::placeholder {
-  color: white;
-} */
 .hero_search_icon {
   top: 33%;
   left: 20px;
@@ -164,6 +158,11 @@ footer {
 .footer_bar span {
   color: #e58e26;
 }
+.footer_icon:hover{
+  color: #7ee0fa;
+}
+
+
 
 @media (max-width: 1399px) {
   .hero_inner_store {
