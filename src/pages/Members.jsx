@@ -16,7 +16,7 @@ const Members = () => {
     try {
       setLoading(true);
       setIsFetching(true);
-      const response = await axios.post('https://xxgn1wm1-5000.inc1.devtunnels.ms/api/users/advancedSearchUsers', {
+      const response = await axios.post('https://startupweaver.itfuturz.in/api/users/advancedSearchUsers', {
         search: search,
         page: currentPage,
         limit: 10
@@ -30,7 +30,7 @@ const Members = () => {
         name: user.name || "No Name",
         profession: user.userType?.name || "No Profession",
         image: user.userImage
-          ? `https://xxgn1wm1-5000.inc1.devtunnels.ms/${user.userImage}`
+          ? `https://startupweaver.itfuturz.in/${user.userImage}`
           : "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg"
       }));
 
