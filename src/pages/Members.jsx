@@ -11,6 +11,9 @@ const Members = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
+const [showModal, setShowModal] = useState(false);
+
 
   const fetchMembers = async (search = '', currentPage = 1, append = false) => {
     try {
@@ -24,14 +27,15 @@ const Members = () => {
 
       const users = response.data?.data?.users || [];
       const total = response.data?.data?.totalPages || 1;
-
+      
       const formattedUsers = users.map(user => ({
         id: user._id,
         name: user.name || "No Name",
         profession: user.userType?.name || "No Profession",
+        fullData: user,
         image: user.userImage
           ? `https://startupweaver.itfuturz.in/${user.userImage}`
-          : "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg"
+          : "https://ia801307.us.archive.org/1/items/instagram-plain-round/instagram%20dip%20in%20hair.jpg"
       }));
 
       setMembersData(prev => append ? [...prev, ...formattedUsers] : formattedUsers);
@@ -109,7 +113,16 @@ const Members = () => {
         <div className="members-grid mt-5">
           <div className="row g-4">
             {membersData.map((member) => (
-              <div key={member.id} className="col-lg-3 col-md-4 col-sm-6">
+              <div
+  key={member.id}
+  className="col-lg-3 col-md-4 col-sm-6"
+  onClick={() => {
+    const fullData = membersData.find(m => m.id === member.id);
+    setSelectedMember(fullData);
+    setShowModal(true);
+  }}
+>
+
                 <div className="member-card">
                   <div className="member-image-container">
                     <img
@@ -128,6 +141,72 @@ const Members = () => {
           </div>
         </div>
 
+{showModal && selectedMember && (
+  <div className="modal-backdrop d-flex align-items-center justify-content-center" onClick={() => setShowModal(false)}>
+    <div className="modal-content bg-white rounded-4 shadow-lg position-relative p-4" onClick={(e) => e.stopPropagation()}>
+      <button 
+        className="btn-close position-absolute top-0 end-0 m-3 btn btn-outline-danger rounded-circle p-2" 
+        onClick={() => setShowModal(false)}
+        style={{width: '40px', height: '40px'}}
+      >
+        <span className="fw-bold">×</span>
+      </button>
+      
+      <div className="text-center">
+        <div className="mb-4">
+          <img 
+            src={selectedMember.image} 
+            alt={selectedMember.name} 
+            className="modal-image rounded-circle border border-3 border-primary shadow-sm" 
+            style={{width: '120px', height: '120px', objectFit: 'cover'}}
+          />
+        </div>
+        
+        <h2 className="mb-4 text-primary fw-bold">{selectedMember.name}</h2>
+        
+        <div className="row g-3 text-start">
+          <div className="col-12">
+            <div className="card border-0 bg-light">
+              <div className="card-body py-2">
+                <small className="text-muted fw-semibold">PROFESSION</small>
+                <p className="mb-0 fw-medium">{selectedMember.profession}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="col-12">
+            <div className="card border-0 bg-light">
+              <div className="card-body py-2">
+                <small className="text-muted fw-semibold">EMAIL</small>
+                <p className="mb-0 fw-medium text-break">{selectedMember.fullData.emailId || 'N/A'}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="col-12">
+            <div className="card border-0 bg-light">
+              <div className="card-body py-2">
+                <small className="text-muted fw-semibold">MOBILE</small>
+                <p className="mb-0 fw-medium">{selectedMember.fullData.mobileNo || 'N/A'}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="col-12">
+            <div className="card border-0 bg-light">
+              <div className="card-body py-2">
+                <small className="text-muted fw-semibold">BUSINESS NAME</small>
+                <p className="mb-0 fw-medium">{selectedMember.fullData.businessName || 'N/A'}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+
         {!loading && membersData.length === 0 && (
           <div className="no-results">
             <h3>No members found</h3>
@@ -136,6 +215,12 @@ const Members = () => {
         )}
 
         {loading && (
+          <div className="no-results">
+            <h3>Loading...</h3>
+          </div>
+        )}
+
+        {page+1  <= totalPages && page !== 0 && (
           <div className="no-results">
             <h3>Loading...</h3>
           </div>
