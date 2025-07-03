@@ -12,7 +12,6 @@ import scanQR from "../assets/scanQR.png"
 import { FaFacebookSquare, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-
 const Home = () => {
   return (
     <>
@@ -27,8 +26,8 @@ const Home = () => {
                     <h2>India’s <span>#1</span> <br/> <span>Textile</span> Business app</h2>
                     <p className="my-5">India’s First Textile B2B Digital Hub</p>
                     <div className="hero_inner_store gap-3 pt-xl-4">
-                      <img src={googleplay} alt="google play store" />
-                      <img src={appstore} alt="apple store" />
+                      <a href="https://play.google.com/store/apps/details?id=app.textile.mandee" target="_blank"><img src={googleplay} alt="google play store" /></a>
+                      <a href="https://apps.apple.com/in/app/textile-mandee/id6743525584" target="_blank"><img src={appstore} alt="apple store" /></a>
                     </div>
                   </div>
                   <a href="#main_category" className="text-decoration-none">
@@ -53,7 +52,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h6>Outstation Broker</h6>
-                      <a href="">View more</a>
+                      <a href={"/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_medium category_slide_inner">
@@ -62,7 +61,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h5>Surat Trader</h5>
-                      <a href="">View more</a>
+                      <a href={"/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_big category_slide_inner">
@@ -71,7 +70,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h5>Value Addition</h5>
-                      <a href="">View more</a>
+                      <a href={"/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_medium category_slide_inner">
@@ -80,7 +79,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h5>Weaver</h5>
-                      <a href="">View more</a>
+                      <a href={"/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_small category_slide_inner">
@@ -89,7 +88,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h6>Buyer</h6>
-                      <a href="">View more</a>
+                      <a href={"/member"}>View more</a>
                     </div>
                   </div>
                 </div>
@@ -103,11 +102,11 @@ const Home = () => {
               <h1>Download the app now !</h1>
               <p>Experience seamless online business <br/> only on the TexTile Mandee app</p>
               <div className="download_image gap-3 pt-xl-4 d-flex">
-                      <img src={googleplay} alt="google play store" />
-                      <img src={appstore} alt="apple store" />
+                      <a href="https://play.google.com/store/apps/details?id=app.textile.mandee" target="_blank"><img src={googleplay} alt="google play store" /></a>
+                      <a href="https://apps.apple.com/in/app/textile-mandee/id6743525584" target="_blank"><img src={appstore} alt="apple store" /></a>
               </div>
               <div className="qrscan">
-                <img src={scanQR} alt="QR scan" />
+                <img src={scanQR} alt="QR scan"/>
               </div>
             </div>
           </div>
@@ -123,14 +122,16 @@ const Home = () => {
               </div>
               <div className="text-end mt-4 mt-lg-0">
                 <div className="footer_image gap-3 pt-xl-4 d-flex">
-                      <img src={googleplay} alt="google play store" />
-                      <img src={appstore} alt="apple store" />
+                      <a href="https://play.google.com/store/apps/details?id=app.textile.mandee" target="_blank"><img src={googleplay} alt="google play store" /></a>
+                      <a href="https://apps.apple.com/in/app/textile-mandee/id6743525584" target="_blank"><img src={appstore} alt="apple store" /></a>
                 </div>
                 <div className="mt-lg-3 mt-4 gap-3 d-flex justify-content-lg-end">
+                  <a href="https://www.instagram.com/textilemandee/?igsh=MjNyeGFsdmc2aTV2#" className=" text-white" target="_blank">
                   <FaInstagram className="fs-3 footer_icon"/>
-                  <FaFacebookSquare className="fs-3 footer_icon"/>
+                  </a>
+                  {/* <FaFacebookSquare className="fs-3 footer_icon"/>
                   <FaXTwitter className="fs-3 footer_icon"/>
-                  <FaLinkedin className="fs-3 footer_icon"/>
+                  <FaLinkedin className="fs-3 footer_icon"/> */}
                 </div>
               </div>
             </div>

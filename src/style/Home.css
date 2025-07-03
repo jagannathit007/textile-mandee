@@ -129,6 +129,10 @@
   position: absolute;
   top: -93px;
   right: 25px;
+  width: 458.8px;
+}
+.download .qrscan img {
+  width: 100%;
 }
 .download_image img {
   width: 200px;
@@ -180,10 +184,7 @@ footer {
   }
   .download .qrscan {
     right: 30px;
-    width: 470px;
-  }
-  .qrscan img {
-    width: 100%;
+    width: 422px;
   }
   .download h1 {
     font-size: 44px;
@@ -219,7 +220,7 @@ footer {
   .download .qrscan {
     right: 26px;
     top: -65px;
-    width: 380px;
+    width: 343px;
   }
   .download {
     height: 400px;
@@ -261,7 +262,7 @@ footer {
   .download .qrscan {
     right: 14px;
     top: -55px;
-    width: 280px;
+    width: 252px;
   }
   .download_image img {
     width: 150px;
@@ -305,7 +306,7 @@ footer {
   .download .qrscan {
     right: 115px;
     top: 198px;
-    width: 280px;
+    width: 252px;
   }
   .category p {
     width: 100%;
@@ -350,7 +351,7 @@ footer {
   .download .qrscan {
     left: 50%;
     transform: translateX(-50%);
-    top: 198px;
+    top: 197px;
   }
   .download h1 {
     font-size: 27px;

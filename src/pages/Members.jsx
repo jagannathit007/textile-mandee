@@ -7,7 +7,7 @@ import { FiSearch } from 'react-icons/fi';
 const Members = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [membersData, setMembersData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
@@ -220,7 +220,7 @@ const [showModal, setShowModal] = useState(false);
           </div>
         )}
 
-        {page+1  <= totalPages && page !== 0 && (
+        {!loading && page+1  <= totalPages && page !== 0 && (
           <div className="no-results">
             <h3>Loading...</h3>
           </div>
