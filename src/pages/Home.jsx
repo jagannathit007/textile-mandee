@@ -18,7 +18,7 @@ const Home = () => {
         <section className="main_hero">
             <div className="container-fluid">
                 <div className="hero py-4">
-                  <a href={"/member"} className="hero_search text-black bg-white rounded mx-auto py-3 fs-5 me-lg-5 px-5 fw-bold position-relative">
+                  <a href={"/#/member"} className="hero_search text-black bg-white rounded mx-auto py-3 fs-5 me-lg-5 px-5 fw-bold position-relative">
                      <FiSearch className="text-black fs-5 position-absolute hero_search_icon"/>Search Members
                   </a>
                   <div className="inner_hero text-center text-white">
@@ -52,7 +52,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h6>Outstation Broker</h6>
-                      <a href={"/member"}>View more</a>
+                      <a href={"/#/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_medium category_slide_inner">
@@ -61,7 +61,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h5>Surat Trader</h5>
-                      <a href={"/member"}>View more</a>
+                      <a href={"/#/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_big category_slide_inner">
@@ -70,7 +70,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h5>Value Addition</h5>
-                      <a href={"/member"}>View more</a>
+                      <a href={"/#/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_medium category_slide_inner">
@@ -79,7 +79,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h5>Weaver</h5>
-                      <a href={"/member"}>View more</a>
+                      <a href={"/#/member"}>View more</a>
                     </div>
                   </div>
                   <div className="category_small category_slide_inner">
@@ -88,7 +88,7 @@ const Home = () => {
                     </div>
                     <div className="category_inner_text d-flex justify-content-between">
                       <h6>Buyer</h6>
-                      <a href={"/member"}>View more</a>
+                      <a href={"/#/member"}>View more</a>
                     </div>
                   </div>
                 </div>
